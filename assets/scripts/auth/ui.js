@@ -36,6 +36,22 @@ const signOutFailure = (error) => {
   console.error(error)
 }
 
+const createProjectSuccess = (response) => {
+  console.log('createProjectSuccess is', response)
+}
+
+const createProjectFailure = (error) => {
+  console.error(error)
+}
+
+const createTasksSuccess = (response) => {
+  console.log('createTasksSuccess is', response)
+}
+
+const createTasksFailure = (error) => {
+  console.error(error)
+}
+
 module.exports = {
   signUpSuccess,
   signUpFailure,
@@ -44,5 +60,9 @@ module.exports = {
   changePasswordSuccess,
   changePasswordFailure,
   signOutSuccess,
-  signOutFailure
+  signOutFailure,
+  createProjectSuccess,
+  createProjectFailure,
+  createTasksSuccess,
+  createTasksFailure
 }

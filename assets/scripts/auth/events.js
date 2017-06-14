@@ -38,11 +38,30 @@ const onSignOut = function (event) {
     .catch(ui.signOutFailure)
 }
 
+const onCreateProject = function (event) {
+  debugger
+  event.preventDefault()
+  const data = getFormFields(this)
+  api.createProject(data)
+    .then(ui.createProjectSuccess)
+    .catch(ui.createProjectFailure)
+}
+
+const onCreateTasks = function (event) {
+  console.log(event)
+  event.preventDefault()
+  const data = getFormFields(this)
+  api.createTasks(data)
+    .then(ui.createTasksSuccess)
+    .catch(ui.createTasksFailure)
+}
+
 const addHandlers = () => {
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
   $('#sign-out').on('submit', onSignOut)
   $('#change-password').on('submit', onChangePassword)
+  $('#createProject').on('submit', onCreateProject)
 }
 
 module.exports = {

@@ -1,16 +1,16 @@
 #!/bin/bash
 
 API="${API_ORIGIN:-http://localhost:4741}"
-URL_PATH="/sign-in"
+URL_PATH="/projects"
 curl "${API}${URL_PATH}" \
   --include \
   --request POST \
   --header "Content-Type: application/json" \
+  --header "Authorization: Token token=$TOKEN" \
   --data '{
-    "credentials": {
-      "email": "'"${EMAIL}"'",
-      "password": "'"${PASSWORD}"'",
-      "password_confirmation": "'"${PASSWORD}"'"
+    "project": {
+      "title": "'"${STRING}"'",
+      "description": "'"${TEXT}"'"
     }
   }'
 

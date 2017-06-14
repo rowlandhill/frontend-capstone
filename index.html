@@ -121,102 +121,76 @@
       to stay on the same page.</p>
 
       <!-- CREATE PROJECT MODAL BUTTON-->
-  <button type="button" class="btn btn-lg button-styling" style="margin:0 auto;" data-toggle="modal" id="new-recipe-modal-button" data-target="#newrecipemodal">create new project</button>
+  <button type="button" class="btn btn-lg button-styling" style="margin:0 auto;" data-toggle="modal" id="new-project-modal-button" data-target="#newprojectmodal">create new project</button>
 
   <!-- CREATE PROJECT MODAL-->
-  <div id="newrecipemodal" class="modal fade" role="dialog">
+  <div id="newprojectmodal" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title" id="create-recipe-alert">type in the name, description and tasks<br>then click 'create' to get the project started!</h4>
+          <h4 class="modal-title" id="create-project-alert">type in the name, description and tasks<br>then click 'create' to get the project started!</h4>
         </div>
         <div class="modal-body">
 
           <div class="container-fluid">
 
-            <form id="createRecipe" class="form-group">
+            <form id="createProject" class="form-group">
               <div class="form-group">
-                <input class="form-control" type="text" name="recipe[name]" placeholder="recipe name">
+                <input class="form-control" type="text" name="project[title]" placeholder="project name">
               </div>
             <div class="form-group">
-            <textarea class="form-control" name="recipe[description]" rows="7" placeholder="add description and ingredients here"></textarea>
+            <textarea class="form-control" name="project[description]" rows="7" placeholder="add description here"></textarea>
             </div>
             <div class="form-group">
-              <input class="form-control" name="recipe[servings]" type="text" value="" placeholder="serving size">
+              <input class="form-control" name="task[name]" type="text" value="" placeholder="tasks">
             </div>
-            <button type="submit" class="btn btn-default" id="add-recipe" name="submit">create</button>
+            <div class="form-group">
+              <textarea class="form-control" name="task[description]" rows="3" type="text" value="" placeholder="add task description here"></textarea>
+            </div>
+            <button type="submit" class="btn btn-default" id="create-project">create</button>
+            <button type="submit" class="btn btn-default" id="more-task-inputs" name="submit">+ task</button>
             </form>
             </div>
 
         </div>
         <div class="modal-footer">
-          <button type="button" id="exit-create-recipe" class="btn btn-default" data-dismiss="modal">exit to main page</button>
+          <button type="button" id="exit-create-project" class="btn btn-default" data-dismiss="modal">exit to main page</button>
         </div>
       </div>
 
     </div>
   </div>
 
+<!-- LOOK ABOVE FOR CREATE PROJECT MODAL-->
 
     <!-- GET ALL PROJECTS MODAL BUTTON -->
-<button type="button" class="btn btn-lg button-styling" data-toggle="modal" id="all-recipes-modal-button" data-target="#allrecipesmodal">all your recipes</button>
+<button type="button" class="btn btn-lg button-styling" data-toggle="modal" id="get-project-modal-button" data-target="#getprojectmodal">your project</button>
 
 <!-- GET ALL PROJECTS MODAL -->
-<div id="allrecipesmodal" class="modal fade" role="dialog">
+<div id="getprojectmodal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" id="getRecipesCloseX" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title" id="edit-delete-alert">click below to see all your recipes!<br>you can update or delete them here as well</h4>
+        <button type="button" class="close" id="getProjectCloseX" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" id="check-off-alert">click below to see how your project is going!<br>you can check off completed tasks</h4>
       </div>
       <div class="modal-body">
 
-        <button id="getRecipesButton" class="btn btn-default" value="all my recipes">lemme see my recipes</button>
-        <button id="clearRecipesButton" class="btn btn-default" data-dismiss="modal" value="clear all recipes">go away, recipes</button>
+        <button id="getProjectButton" class="btn btn-default" value="my project">lemme see my project</button>
+        <button id="clearProjectButton" class="btn btn-default" data-dismiss="modal" value="clear project">go away, project</button>
         <br>
         <div id="content" class="content"></div>
       </div>
       <div class="modal-footer">
-        <button type="button" id="exit-all-recipes-modal" class="btn btn-default" data-dismiss="modal">exit to main page</button>
+        <button type="button" id="exit-get-project-modal" class="btn btn-default" data-dismiss="modal">exit to main page</button>
       </div>
     </div>
 
   </div>
 </div>
 
-<!-- GET ONE RECIPE MODAL BUTTON -->
-<button type="button" class="btn btn-lg button-styling" data-toggle="modal" id="get-one-recipe-modal-button" data-target="#getonerecipemodal">get one of your recipes</button>
-<!-- Modal -->
-<div id="getonerecipemodal" class="modal fade" role="dialog">
-<div class="modal-dialog">
-
-  <!-- GET ONE RECIPE MODAL -->
-  <div class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="close" id="clear-one-recipe-X" data-dismiss="modal">&times;</button>
-      <h4 class="modal-title" id="get-one-recipe-alert">type in the id of the recipe you'd like to see</h4>
-    </div>
-    <div class="modal-body">
-
-    <form id="getOneRecipe">
-    <div class="form-group">
-    <input class="form-control" type="text" name="recipe[id]" placeholder="recipe id" id="textbox" required/>
-    </div>
-    <button type="submit" class="btn btn-default" name="submit">get recipe</button>
-    <br>
-    <div id="one-recipe-content" class="one-recipe-content"></div>
-    </form>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-default" id="clear-one-recipe">clear</button>
-      <button type="button" class="btn btn-default" id="exit-one-recipe" data-dismiss="modal">exit to main page</button>
-    </div>
-  </div>
-
-</div>
-</div>
     </body>
 </html>
