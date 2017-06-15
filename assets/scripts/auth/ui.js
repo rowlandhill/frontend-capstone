@@ -41,9 +41,10 @@ const signOutFailure = (error) => {
 
 const refreshProject = (data) => {
   const showProjectHtml = showProjectTemplate({ projects: store.projectList })
+  $('.content').empty()
   $('.content').append(showProjectHtml)
-  // $('.update').on('submit', onUpdateProject)
-  // $('.destroy').on('click', onDeleteProject)
+  $('.update').on('submit', onUpdateProject)
+  $('.destroy').on('click', onDeleteProject)
 }
 
 const createProjectSuccess = (response) => {
@@ -68,10 +69,8 @@ const getProjectSuccess = (data) => {
   console.log('we made it')
   // console.log('getAllRecipesSuccess fired')
   store.projectList = data.projects
-  refreshProject(data)
-  console.log('data is ', data)
   console.log('data.projects is ', data.projects)
-  console.log('refreshProject() is ', refreshProject)
+  refreshProject(data)
 }
 
 const getProjectFailure = (error) => {
@@ -94,31 +93,28 @@ const updateProjectFailure = (error) => {
   console.error(error)
 }
 
-const noEmptyUpdates = (input) => {
-  if (/[a-z]/.test(input.toLowerCase()) === false) { return false }
-  return true
-}
+// const noEmptyUpdates = (input) => {
+//   if (/[a-z]/.test(input.toLowerCase()) === false) { return false }
+//   return true
+// }
 
 const onUpdateProject = (event) => {
   event.preventDefault()
   const data = getFormFields(event.target)
   // console.log(data)
   const newProject = $(event.target).attr('data-id')
-  // console.log('event.target is ' + data)
-  console.log(newProject)
-  $('.update').trigger('reset')
+  console.log('update event.target is ' + data)
+  console.log('newProject is ', newProject)
+  // $('.update').trigger('reset')
   refreshProject()
-  if (noEmptyUpdates(data.project.title) === true) {
-    api.updateProject(data, newProject)
+  api.updateProject(data, newProject)
     .then(updateProjectSuccess)
     .then(() => {
       api.getProject()
         .then(getProjectSuccess)
         .catch(getProjectFailure)
+        .catch(updateProjectFailure)
     })
-  } else {
-    updateProjectFailure
-  }
 }
 
 const onDeleteProject = (event) => {

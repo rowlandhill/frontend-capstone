@@ -76,7 +76,7 @@ const getProject = (data) => {
 }
 
 const updateProject = (data, newProject) => {
-  // console.log(data + 'PATCH TEST DATA')
+  console.log(data + 'PATCH TEST DATA')
   event.preventDefault()
   return $.ajax({
     url: config.apiOrigin + '/projects/' + newProject,
