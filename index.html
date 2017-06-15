@@ -13,8 +13,6 @@
     </head>
     <body class="container-fluid">
 
-      <body class="container-fluid">
-
   <nav class="navbar navbar-light" style="background-color: white;">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -119,6 +117,7 @@
 
       <p>build together is an app that allows contractors and their customers
       to stay on the same page.</p>
+      <div id="creation-content" class="creation-content"></div>
 
       <!-- CREATE PROJECT MODAL BUTTON-->
   <button type="button" class="btn btn-lg button-styling" style="margin:0 auto;" data-toggle="modal" id="new-project-modal-button" data-target="#newprojectmodal">create new project</button>
@@ -143,16 +142,20 @@
             <div class="form-group">
             <textarea class="form-control" name="project[description]" rows="7" placeholder="add description here"></textarea>
             </div>
-            <div class="form-group">
-              <input class="form-control" name="task[name]" type="text" value="" placeholder="tasks">
+            <!-- <div class="form-group">
+              <input class="form-control" name="task[name]" type="text" placeholder="tasks">
             </div>
-            <div class="form-group">
-              <textarea class="form-control" name="task[description]" rows="3" type="text" value="" placeholder="add task description here"></textarea>
-            </div>
+            <div class="form-group" id="more-tasks">
+              <textarea class="form-control" name="task[description]" rows="3" type="text" placeholder="add task description here"></textarea>
+            </div> -->
+            <!-- <div class="form-group">
+                <input type="radio" name="task[isComplete]" value="true"> Done
+              </div> -->
             <button type="submit" class="btn btn-default" id="create-project">create</button>
-            <button type="submit" class="btn btn-default" id="more-task-inputs" name="submit">+ task</button>
             </form>
+            <!-- <button class="btn btn-default" id="more-task-inputs">+ task</button> -->
             </div>
+
 
         </div>
         <div class="modal-footer">

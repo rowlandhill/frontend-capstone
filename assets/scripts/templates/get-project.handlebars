@@ -1,0 +1,31 @@
+{{#each projects as |project|}}
+
+  <div data-id="{{project.id}}" class="project-post">
+    <ul style="list-style-type: none;">
+      <li><h4>Project Name: <strong>{{project.title}}</strong></h4></li>
+      <li class="desc"><strong>Description:</strong> {{project.description}}</li>
+  </ul>
+  <form class="update" id="{{project.id}}" data-id="{{project.id}}">
+
+    <div class="container-fluid">
+      <br>
+       <input class="form-control handlebars-update" type="text" name="project[title]" id="handlebars-project-name" placeholder="update project name">
+       <br>
+       <div class="form-group">
+     <textarea class="form-control handlebars-update" name="project[description]" id="handlebars-project-desc" rows="7" placeholder="update description here"></textarea>
+    </div>
+    <input type="submit" class="btn btn-default" name="submit" value="update">
+    <br>
+    <div class="destroy">
+      <br>
+       <button data-id="{{project.id}}" id="red-button" class="btn btn-danger" value="delete">delete</button>
+     </div>
+    </form>
+   </div>
+ </div>
+
+<br>
+
+</div>
+</div>
+{{/each}}

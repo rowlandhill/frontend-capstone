@@ -52,15 +52,50 @@ const createProject = (data) => {
   })
 }
 
-const createTasks = (data) => {
-  console.log('createTasks data is', data)
+// const createTasks = (data) => {
+//   console.log('createTasks data is', data)
+//   return $.ajax({
+//     url: config.apiOrigin + '/tasks/',
+//     method: 'POST',
+//     headers: {
+//       Authorization: 'Token token=' + store.user.token
+//     },
+//     data
+//   })
+// }
+
+const getProject = (data) => {
+  console.log('made it 2')
   return $.ajax({
-    url: config.apiOrigin + '/tasks/',
-    method: 'POST',
+    url: config.apiOrigin + '/projects/',
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
+const updateProject = (data, newProject) => {
+  // console.log(data + 'PATCH TEST DATA')
+  event.preventDefault()
+  return $.ajax({
+    url: config.apiOrigin + '/projects/' + newProject,
+    method: 'PATCH',
     headers: {
       Authorization: 'Token token=' + store.user.token
     },
     data
+  })
+}
+
+const deleteProject = (id) => {
+  event.preventDefault()
+  return $.ajax({
+    url: config.apiOrigin + '/projects/' + id,
+    method: 'DELETE',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
   })
 }
 
@@ -70,5 +105,7 @@ module.exports = {
   changePassword,
   signOut,
   createProject,
-  createTasks
+  getProject,
+  updateProject,
+  deleteProject
 }

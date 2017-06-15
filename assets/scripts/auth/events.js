@@ -12,6 +12,11 @@ const onSignUp = function (event) {
   api.signUp(data)
     .then(ui.signUpSuccess)
     .catch(ui.signUpFailure)
+      .then(() => {
+        api.signIn(data)
+          .then(ui.signInSuccess)
+          .catch(ui.signInFailure)
+      })
 }
 
 const onSignIn = function (event) {
@@ -39,21 +44,37 @@ const onSignOut = function (event) {
 }
 
 const onCreateProject = function (event) {
-  debugger
   event.preventDefault()
   const data = getFormFields(this)
   api.createProject(data)
     .then(ui.createProjectSuccess)
     .catch(ui.createProjectFailure)
+    // .then(() => {
+    //   api.createTasks(data)
+    //     .then(ui.createTasksSuccess)
+    //     .catch(ui.createTasksFailure)
+    // })
 }
 
-const onCreateTasks = function (event) {
-  console.log(event)
+// const addAnotherInput = function () {
+//   $('<br><div class="form-group"><input class="form-control" name="task[name]" type="text" placeholder="tasks"></div><div class="form-group" id="more-tasks"><textarea class="form-control" name="task[description]" rows="3" type="text" placeholder="add task description here"></textarea></div>').appendTo('#createProject')
+// }
+
+// const onCreateTasks = function (event) {
+//   console.log(event)
+//   event.preventDefault()
+//   const data = getFormFields(this)
+//   api.createTasks(data)
+//     .then(ui.createTasksSuccess)
+//     .catch(ui.createTasksFailure)
+// }
+
+const onGetProject = function (event) {
   event.preventDefault()
   const data = getFormFields(this)
-  api.createTasks(data)
-    .then(ui.createTasksSuccess)
-    .catch(ui.createTasksFailure)
+  api.getProject(data)
+    .then(ui.getProjectSuccess)
+    .catch(ui.getProjectFailure)
 }
 
 const addHandlers = () => {
@@ -62,6 +83,8 @@ const addHandlers = () => {
   $('#sign-out').on('submit', onSignOut)
   $('#change-password').on('submit', onChangePassword)
   $('#createProject').on('submit', onCreateProject)
+  // $('#more-task-inputs').on('click', addAnotherInput)
+  $('#getProjectButton').on('click', onGetProject)
 }
 
 module.exports = {
