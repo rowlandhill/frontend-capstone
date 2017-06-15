@@ -16,6 +16,8 @@ const signUpFailure = (error) => {
 const signInSuccess = (data) => {
   console.log('sign in success')
   store.user = data.user
+  api.getProject()
+    .then(getProjectSuccess)
 }
 
 const signInFailure = (error) => {
@@ -51,6 +53,8 @@ const createProjectSuccess = (response) => {
   store.project = response.project
   console.log('createProjectSuccess is', response)
   $('#creation-content').html('response is ' + store.project.title)
+  api.getProject()
+    .then(getProjectSuccess)
 }
 
 const createProjectFailure = (error) => {
@@ -71,6 +75,12 @@ const getProjectSuccess = (data) => {
   store.projectList = data.projects
   console.log('data.projects is ', data.projects)
   refreshProject(data)
+  console.log('length is ', data.projects.length)
+  if (data.projects.length === 1)
+    $('#new-project-modal-button').addClass('hidden')
+  else {
+    $('#new-project-modal-button').removeClass('hidden')
+  }
 }
 
 const getProjectFailure = (error) => {
