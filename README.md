@@ -65,6 +65,10 @@ I also want customer-users to eventually be able to list their needs, which will
 [Wireframe link 1](http://i.imgur.com/g9yA23M.jpg)
 [Wireframe link 2](http://i.imgur.com/SEJhTPI.jpg)
 
+## Screenshot of App:
+
+!['application' View](http://i.imgur.com/M3RrMbU.png)
+
 ## ERD:
 
 Users have one Project
