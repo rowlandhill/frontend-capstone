@@ -20,7 +20,7 @@
           build + together
         </p>
         <!-- CHANGE PASSWORD -->
-        <form id="change-password" class="form-inline">
+        <form id="change-password" class="form-inline hidden">
           <div class="form-group">
             <input class="form-control" type="password" name="passwords[old]" placeholder="old password">
           </div>
@@ -32,7 +32,7 @@
           </div>
         </form>
             <!-- SIGN OUT -->
-        <form id="sign-out" class="">
+        <form id="sign-out" class="hidden">
           <input class="btn btn-default" type="submit" name="submit" value="sign out">
         </form>
         <div id="change-password-alert" class="appear"></div>
@@ -85,10 +85,10 @@
               <div class="modal-body">
 
                 <form class="form-inline" id="sign-up">
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                       <input type="radio" name="credentials[user_type]" value="customer"> Homeowner
                       <input type="radio" name="credentials[user_type]" value="contractor"> Contractor
-                    </div>
+                    </div> -->
                   <br>
                     <div class="form-group">
                     <input class="form-control" name="credentials[email]" type="text" value="" placeholder="desired username">
@@ -113,23 +113,27 @@
       </div>
     </div>
 </nav>
-      <h1>build + together</h1>
+    <div class="master-div" id="headline">
+      <div class="left">
+        <h1>build + together</h1>
 
-      <p>build together is an app that allows contractors and their customers
-      to stay on the same page.</p>
-      <div id="creation-content" class="creation-content"></div>
+      <p>build together is an app that will help homeowners <br>stay on the same
+        page as their contractors.</p>
+      </div>
+    <div class="right hidden" id="messages"></div>
+  </div>
 
-      <!-- CREATE PROJECT MODAL BUTTON-->
-  <button type="button" class="btn btn-lg button-styling" style="margin:0 auto;" data-toggle="modal" id="new-project-modal-button" data-target="#newprojectmodal">create new project</button>
+      <!-- NEW PROJECT MODAL BUTTON-->
+  <button type="button" class="btn btn-lg button-styling hidden" style="margin:0 auto;" data-toggle="modal" id="new-project-modal-button" data-target="#newprojectmodal">create new project</button>
 
-  <!-- CREATE PROJECT MODAL-->
+  <!-- NEW PROJECT MODAL-->
   <div id="newprojectmodal" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title" id="create-project-alert">type in the name, description and tasks<br>then click 'create' to get the project started!</h4>
+          <h4 class="modal-title" id="create-project-alert">type in the name and description<br>then click 'create' to get the project started!</h4>
         </div>
         <div class="modal-body">
 
@@ -166,10 +170,10 @@
     </div>
   </div>
 
-<!-- LOOK ABOVE FOR CREATE PROJECT MODAL-->
+<!-- LOOK ABOVE FOR NEW PROJECT MODAL-->
 
     <!-- GET ALL PROJECTS MODAL BUTTON -->
-<button type="button" class="btn btn-lg button-styling" data-toggle="modal" id="get-project-modal-button" data-target="#getprojectmodal">your project</button>
+<button type="button" class="btn btn-lg button-styling hidden" data-toggle="modal" id="get-project-modal-button" data-target="#getprojectmodal">your project</button>
 
 <!-- GET ALL PROJECTS MODAL -->
 <div id="getprojectmodal" class="modal fade" role="dialog">
@@ -178,7 +182,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" id="getProjectCloseX" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title" id="check-off-alert">click below to see how your project is going!<br>you can check off completed tasks</h4>
+        <h4 class="modal-title" id="check-off-alert">click below to see your project<br>and make edits if you want<br>click 'update' to see it on the main page</h4>
       </div>
       <div class="modal-body">
 
@@ -194,6 +198,9 @@
 
   </div>
 </div>
+<br>
+
+<div id="creation-content" class="creation-content hidden"></div>
 
     </body>
 </html>

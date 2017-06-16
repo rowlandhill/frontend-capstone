@@ -1,15 +1,15 @@
 {{#each projects as |project|}}
 
   <div data-id="{{project.id}}" class="project-post">
-    <ul style="list-style-type: none;">
+    <!-- <ul style="list-style-type: none;">
       <li><h4>Project Name: <strong>{{project.title}}</strong></h4></li>
       <li class="desc"><strong>Description:</strong> {{project.description}}</li>
-  </ul>
+  </ul> -->
   <form class="update" id="{{project.id}}" data-id="{{project.id}}">
 
     <div class="container-fluid">
       <br>
-       <input class="form-control handlebars-update" type="text" name="project[title]" id="handlebars-project-name" placeholder="update project name">
+       <input class="form-control handlebars-update" type="text" name="project[title]" id="handlebars-project-name" placeholder="Project title: {{project.title}}">
        <br>
        <div class="form-group">
      <textarea class="form-control handlebars-update" name="project[description]" id="handlebars-project-desc" rows="7">{{project.description}}</textarea>

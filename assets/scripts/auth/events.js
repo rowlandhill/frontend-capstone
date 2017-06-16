@@ -7,16 +7,10 @@ const ui = require('./ui')
 
 const onSignUp = function (event) {
   const data = getFormFields(this)
-  console.log('data is', data)
   event.preventDefault()
   api.signUp(data)
     .then(ui.signUpSuccess)
     .catch(ui.signUpFailure)
-      .then(() => {
-        api.signIn(data)
-          .then(ui.signInSuccess)
-          .catch(ui.signInFailure)
-      })
 }
 
 const onSignIn = function (event) {
@@ -25,6 +19,11 @@ const onSignIn = function (event) {
   api.signIn(data)
     .then(ui.signInSuccess)
     .catch(ui.signInFailure)
+      // .then(() => {
+      //   api.getProject()
+      //   .then(ui.getProjectSuccess)
+      //   .catch(ui.getProjectFailure)
+      // })
 }
 
 const onChangePassword = function (event) {

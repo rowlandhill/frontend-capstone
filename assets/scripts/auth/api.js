@@ -41,7 +41,6 @@ const signOut = (data) => {
 }
 
 const createProject = (data) => {
-  console.log('createProject data is', data)
   return $.ajax({
     url: config.apiOrigin + '/projects/',
     method: 'POST',
@@ -65,7 +64,6 @@ const createProject = (data) => {
 // }
 
 const getProject = (data) => {
-  console.log('made it 2')
   return $.ajax({
     url: config.apiOrigin + '/projects/',
     method: 'GET',
@@ -75,8 +73,18 @@ const getProject = (data) => {
   })
 }
 
+// const signInGetProject = (data) => {
+//   console.log('signInGetProject fired')
+//   return $.ajax({
+//     url: config.apiOrigin + '/projects/',
+//     method: 'GET',
+//     headers: {
+//       Authorization: 'Token token=' + store.user.token
+//     }
+//   })
+// }
+
 const updateProject = (data, newProject) => {
-  console.log(data + 'PATCH TEST DATA')
   event.preventDefault()
   return $.ajax({
     url: config.apiOrigin + '/projects/' + newProject,
@@ -108,4 +116,6 @@ module.exports = {
   getProject,
   updateProject,
   deleteProject
+  // ,
+  // signInGetProject
 }

@@ -4,3 +4,148 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 .hidden {
   visibility: hidden;
 }
+
+body {
+  background-image: url('http://jamikconstruction.com/wp-content/uploads/yellow-hat.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+h1, p {
+  color: #000000;
+}
+
+.sign-out-message {
+  border-radius: 25px;
+  background: white;
+  padding: 5px;
+  width: 470px;
+  height: 100px;
+  opacity: 0.7;
+  width: 400px;
+  margin: 0 auto;
+  font-size: 28px;
+  text-align: center;
+}
+
+#headline {
+  border-radius: 25px;
+  background: white;
+  padding: 5px;
+  width: 550px;
+  height: 220px;
+  opacity: 0.7;
+  margin-bottom: 5px;
+}
+
+#change-password-alert {
+  background: white;
+  padding: 9px;
+  width: 300px;
+  height: 50px;
+  opacity: 0.7;
+  font-size: 20px;
+  text-align: center;
+  float: right;
+}
+
+.appear {
+  opacity: 1;
+  transition: opacity 500ms;
+}
+
+.disappear {
+  opacity: 0;
+}
+
+.button-styling {
+  background: white;
+  opacity: 0.7;
+}
+
+.modal-backdrop {
+  z-index: -1;
+}
+
+#red-button {
+  background: red;
+}
+
+#nav-bar-styling {
+  background: #DEE9E0;
+  opacity: 0.7;
+}
+
+#description-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+#description {
+  // display: inline-block;
+  position: relative;
+}
+
+.left {
+  display: inline;
+}
+
+#messages {
+  display: inline;
+  font-weight: bold;
+}
+
+#sign-in {
+  // display: inline-block;
+  float: left;
+  margin: 10px 10px 5px 10px;
+}
+
+#sign-up {
+  // display: inline-block;
+  float: left;
+  margin: 10px 10px 10px 128px;
+}
+
+#change-password {
+  float: left;
+  margin: 10px;
+}
+
+#sign-out {
+  float: left;
+  margin: 10px;
+}
+
+.creation-content {
+  text-align: center;
+  border-style: solid;
+  border-width: 5px;
+  width: 80%;
+  background: white;
+  position: relative;
+  margin: 5% auto;
+  padding: 1%;
+  border-radius: 25px;
+}
+
+.creation-content:before{
+  display: block;
+  padding-top: 25%;
+}
+
+#get-project-modal-button {
+  position: relative;
+  top: 30%;
+  display: inline-block;
+  margin: auto;
+}
+
+#new-project-modal-button {
+  position: relative;
+  top: 30%;
+  display: inline-block;
+  margin: auto;
+}
