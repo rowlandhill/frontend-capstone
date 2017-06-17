@@ -59,9 +59,9 @@ const signInSuccess = (data) => {
   // api.signInGetProject()
   //   .then(signInGetProjectSuccess)
   $('#messages').html('<h5>welcome! if you\'re working on something <br> click \'your project\'</h5>')
-
-  api.getProject()
-    .then(getProjectSuccess)
+  checkForProjectOnSignIn()
+  // api.getProject()
+  //   .then(getProjectSuccess)
 }
 
 const signInFailure = (error) => {
@@ -112,6 +112,25 @@ const signOutFailure = (error) => {
   console.error(error)
 }
 
+const checkForProjectOnSignIn = () => {
+  console.log('checkForProject fired')
+  api.getProject()
+    .then(signInGetProjectSuccess)
+}
+
+const signInGetProjectSuccess = (data) => {
+  console.log('signInGetProjectSuccess fired ', data.projects.length)
+  // console.log('data.projects[0].title ', data.projects[0].title)
+  if (data.projects.length === 0)
+    $('#new-project-modal-button').removeClass('hidden')
+  else {
+    if (data.projects.length === 1)
+    // $('#new-project-modal-button').removeClass('hidden')
+      $('#creation-content').removeClass('hidden')
+    $('#creation-content').html('<h3><b>Project Title:</b> ' + data.projects[0].title + '</h3><br><h4>' + '<b>Project Description:</b> ' + data.projects[0].description + '</h4>')
+  }
+}
+
 const refreshProject = (data) => {
   const showProjectHtml = showProjectTemplate({ projects: store.projectList })
   resetForms()
@@ -124,7 +143,7 @@ const refreshProject = (data) => {
 const createProjectSuccess = (response) => {
   store.project = response.project
   // console.log('createProjectSuccess is', response)
-  $('#creation-content').html('<h4>Project Title: ' + store.project.title + '</h4><br><h3>' + 'Project Description: ' + store.project.description + '</h3>')
+  $('#creation-content').html('<h3><b>Project Title:</b> ' + store.project.title + '</h3><br><h4>' + '<b>Project Description:</b> ' + store.project.description + '</h4>')
   $('#newprojectmodal').modal('hide')
   api.getProject()
     .then(getProjectSuccess)
@@ -147,6 +166,8 @@ const getProjectSuccess = (data) => {
   // console.log('getAllRecipesSuccess fired')
   store.projectList = data.projects
   // console.log('data.projects is ', data.projects)
+  console.log('getProjectSuccess store.projectList is ', store.projectList)
+  console.log('getProjectSuccess data.projects is ', data.projects)
   refreshProject(data)
   // console.log('length is ', data.projects.length)
   // console.log('Log in getProjectSuccesstitle is ', data.projects[0].title)
@@ -178,7 +199,7 @@ const deleteProjectFailure = (error) => {
 const updateProjectSuccess = (response) => {
   console.log(response)
   store.project = response.project
-  $('#creation-content').html('<h3>Project Title: ' + store.project.title + '</h3><br><h4>' + 'Project Description: ' + store.project.description + '</h4>')
+  $('#creation-content').html('<h3><b>Project Title:</b> ' + store.project.title + '</h3><br><h4>' + '<b>Project Description:</b> ' + store.project.description + '</h4>')
   $('#getprojectmodal').modal('hide')
 }
 
