@@ -216,7 +216,8 @@ const deleteProjectFailure = (error) => {
 const updateProjectSuccess = (response) => {
   console.log(response)
   store.project = response.project
-  $('#creation-content').html('<h3><b>Project Title:</b> ' + store.project.title + '</h3><br><h4>' + '<b>Project Description:</b> ' + store.project.description + '</h4>')
+  nullProject(store.project)
+  // $('#creation-content').html('<h3><b>Project Title:</b> ' + store.project.title + '</h3><br><h4>' + '<b>Project Description:</b> ' + store.project.description + '</h4>')
   $('#getprojectmodal').modal('hide')
   $('#messages').html('')
 }
