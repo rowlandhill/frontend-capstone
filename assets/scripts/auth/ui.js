@@ -6,7 +6,7 @@ const showProjectTemplate = require('../templates/get-project.handlebars')
 const getFormFields = require(`../../../lib/get-form-fields`)
 
 const signInView = () => {
-  $('#createProject').removeClass('hidden')
+  // $('#createProject').removeClass('hidden')
   $('#get-project-modal-button').removeClass('hidden')
   $('#sign-out').removeClass('hidden')
   $('#change-password').removeClass('hidden')
@@ -26,6 +26,8 @@ const signOutView = () => {
   $('#sign-up-modal-button').removeClass('hidden')
   $('#new-project-modal-button').addClass('hidden')
   $('#creation-content').addClass('hidden')
+  // $('#sign-up-modal-button').modal('show')
+  // $('#sign-up-modal').removeClass('hidden')
 }
 
 const resetForms = () => {
@@ -37,10 +39,8 @@ const resetForms = () => {
 }
 
 const signUpSuccess = (data) => {
-  $('#sign-up-modal-button').modal('hide')
-  $('#sign-up-modal').modal('hide')
   $('#sign-up-modal-button').addClass('hidden')
-  $('#sign-up-modal').addClass('hidden')
+  $('#sign-up-modal').modal('hide')
   resetForms()
 }
 
@@ -104,7 +104,7 @@ const signOutSuccess = (response) => {
   resetForms()
   console.log(response)
   $('#sign-in-modal-alert').html('<p>almost there, sign in below</p>')
-  $('#sign-up-modal-button').html('<p>sign up!</p>')
+  $('#sign-up-modal-alert').html('<p>sign up!</p>')
   $('#messages').html('<h3>signed out!  thank you for using the app!</h3>')
 }
 
@@ -113,13 +113,11 @@ const signOutFailure = (error) => {
 }
 
 const checkForProjectOnSignIn = () => {
-  console.log('checkForProject fired')
   api.getProject()
     .then(signInGetProjectSuccess)
 }
 
 const signInGetProjectSuccess = (data) => {
-  console.log('signInGetProjectSuccess fired ', data.projects.length)
   // console.log('data.projects[0].title ', data.projects[0].title)
   if (data.projects.length === 0)
     $('#new-project-modal-button').removeClass('hidden')
@@ -127,7 +125,8 @@ const signInGetProjectSuccess = (data) => {
     if (data.projects.length === 1)
     // $('#new-project-modal-button').removeClass('hidden')
       $('#creation-content').removeClass('hidden')
-    $('#creation-content').html('<h3><b>Project Title:</b> ' + data.projects[0].title + '</h3><br><h4>' + '<b>Project Description:</b> ' + data.projects[0].description + '</h4>')
+    nullProject(data.projects[0])
+    // $('#creation-content').html('<h3><b>Project Title:</b> ' + data.projects[0].title + '</h3><br><h4>' + '<b>Project Description:</b> ' + data.projects[0].description + '</h4>')
   }
 }
 
@@ -140,11 +139,29 @@ const refreshProject = (data) => {
   $('.destroy').on('click', onDeleteProject)
 }
 
+const nullProject = (data) => {
+  // console.log('nullProject fired')
+  // console.log('data.title is ', data.title)
+  if (data.title === null && data.description === null) {
+    $('#creation-content').html('<h3><b>Project Title:</b> You did not provide a title</h3><br><h4><b>Project Description:</b> You did not provide a description</h4>')
+  } else if (data.title === null & data.description !== null) {
+    $('#creation-content').html('<h3><b>Project Title:</b> You did not provide a title</h3><br><h4><b>Project Description:</b> ' + data.description + '</h4>')
+  } else if (data.title !== null & data.description === null) {
+    $('#creation-content').html('<h3><b>Project Title:</b> ' + data.title + '</h3><br><h4>' + '<b>Project Description:</b> You did not provide a description</h4>')
+  } else {
+    $('#creation-content').html('<h3><b>Project Title:</b> ' + data.title + '</h3><br><h4>' + '<b>Project Description:</b> ' + data.description + '</h4>')
+  }
+}
+
 const createProjectSuccess = (response) => {
   store.project = response.project
   // console.log('createProjectSuccess is', response)
-  $('#creation-content').html('<h3><b>Project Title:</b> ' + store.project.title + '</h3><br><h4>' + '<b>Project Description:</b> ' + store.project.description + '</h4>')
+  $('#creation-content').removeClass('hidden')
+  nullProject(store.project)
+  // $('#creation-content').html('<h3><b>Project Title:</b> ' + store.project.title + '</h3><br><h4>' + '<b>Project Description:</b> ' + store.project.description + '</h4>')
+  $('#new-project-modal-button').addClass('hidden')
   $('#newprojectmodal').modal('hide')
+  $('#messages').html('<h4>good luck with your new project!</h4>')
   api.getProject()
     .then(getProjectSuccess)
 }
@@ -166,8 +183,6 @@ const getProjectSuccess = (data) => {
   // console.log('getAllRecipesSuccess fired')
   store.projectList = data.projects
   // console.log('data.projects is ', data.projects)
-  console.log('getProjectSuccess store.projectList is ', store.projectList)
-  console.log('getProjectSuccess data.projects is ', data.projects)
   refreshProject(data)
   // console.log('length is ', data.projects.length)
   // console.log('Log in getProjectSuccesstitle is ', data.projects[0].title)
@@ -188,6 +203,8 @@ const deleteProjectSuccess = (response) => {
   console.log(response)
   $('#getprojectmodal').modal('hide')
   $('#creation-content').text('')
+  $('#creation-content').addClass('hidden')
+  $('#messages').html('project deleted, start a new one below')
 
   // $('#creation-content').addClass('hidden')
 }
@@ -201,6 +218,7 @@ const updateProjectSuccess = (response) => {
   store.project = response.project
   $('#creation-content').html('<h3><b>Project Title:</b> ' + store.project.title + '</h3><br><h4>' + '<b>Project Description:</b> ' + store.project.description + '</h4>')
   $('#getprojectmodal').modal('hide')
+  $('#messages').html('')
 }
 
 const updateProjectFailure = (error) => {
